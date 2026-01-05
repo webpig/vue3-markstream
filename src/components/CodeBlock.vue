@@ -18,21 +18,25 @@
         </button>
       </div>
     </div>
-    
+
     <!-- 代码内容 -->
     <div class="code-content">
       <CodeBlockNode
         :node="node"
         :show-header="false"
         :monaco-options="monacoOptions"
+        :themes="themes"
       />
     </div>
   </div>
 </template>
-
+<!-- eslint-disable-next-line vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, inject } from 'vue'
 import { CodeBlockNode } from 'markstream-vue'
+
+const { themes, darkTheme, lightTheme } = inject('codeBlockTheme')
+console.log(themes, darkTheme, lightTheme)
 
 const props = defineProps({
   node: {
@@ -155,7 +159,7 @@ const handleCopy = async () => {
   --code-btn-hover: #e8e8ea;
   --code-line-number: #404050;
   --code-content-color: #19224A;
-  
+
   margin: 16px 0;
   border-radius: 8px;
   border: 1px solid var(--code-border);
@@ -197,7 +201,7 @@ const handleCopy = async () => {
   font-size: 12px;
   font-weight: 500;
   color: var(--code-badge-text);
-  background: var(--code-badge-bg);
+  /* background: var(--code-badge-bg); */
   padding: 2px 8px;
   border-radius: 4px;
 }
@@ -223,8 +227,8 @@ const handleCopy = async () => {
 }
 
 .action-btn:hover {
-  background: var(--code-btn-hover);
-  color: var(--code-text);
+  /* background: var(--code-btn-hover); */
+  /* color: var(--code-text); */
 }
 
 .action-text {
@@ -293,86 +297,5 @@ const handleCopy = async () => {
 /* 代码正文默认颜色（不影响语法高亮） */
 .code-content :deep(.monaco-editor .mtk1) {
   color: var(--code-content-color);
-}
-
-/* ========== Atom One Light 语法高亮 ========== */
-/* 
-  基于 highlight.js atom-one-light 配色方案
-  Monaco Editor 的 mtk 类是动态生成的，需要通过 CSS 覆盖
-*/
-
-/* 注释 - mono-3: #a0a1a7 */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk3) {
-  color: #a0a1a7 !important;
-  font-style: italic;
-}
-
-/* 字符串 - hue-4: #50a14f */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk4),
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk7) {
-  color: #50a14f !important;
-}
-
-/* 关键字 - hue-3: #a626a4 */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk5),
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk6),
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk15) {
-  color: #a626a4 !important;
-}
-
-/* 数字、属性 - hue-6: #986801 */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk8) {
-  color: #986801 !important;
-}
-
-/* 类名、类型 - hue-6-2: #c18401 */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk9),
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk11) {
-  color: #c18401 !important;
-}
-
-/* 函数名、方法 - hue-2: #4078f2 */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk10),
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk12) {
-  color: #4078f2 !important;
-}
-
-/* 变量、标识符 - hue-5: #e45649 */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk2) {
-  color: #e45649 !important;
-}
-
-/* 属性名 - hue-6: #986801 */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk13),
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk14) {
-  color: #986801 !important;
-}
-
-/* 标签名 (HTML/JSX) - hue-5: #e45649 */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk16),
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk17) {
-  color: #e45649 !important;
-}
-
-/* 正则表达式、链接 - hue-2: #4078f2 */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk18) {
-  color: #4078f2 !important;
-}
-
-/* 内置对象、常量 - hue-6-2: #c18401 */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk19),
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk20) {
-  color: #c18401 !important;
-}
-
-/* 字面量 - hue-1: #0184bb */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk21) {
-  color: #0184bb !important;
-}
-
-/* 特殊标记、装饰器 - hue-3: #a626a4 */
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk22),
-.custom-code-block:not(.is-dark) :deep(.monaco-editor .mtk23) {
-  color: #a626a4 !important;
 }
 </style>
