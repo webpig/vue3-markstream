@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- 代码内容 -->
     <div class="code-content-wrapper">
       <!-- 行号容器 -->
@@ -45,10 +45,13 @@
     </div>
   </div>
 </template>
-
+<!-- eslint-disable-next-line vue/multi-word-component-names -->
 <script setup lang="ts">
 import { ref, computed, inject } from 'vue'
 import { MarkdownCodeBlockNode } from 'markstream-vue'
+
+const { themes, darkTheme, lightTheme } = inject('codeBlockTheme')
+// console.log(themes, darkTheme, lightTheme)
 
 const props = defineProps({
   node: {
@@ -61,8 +64,8 @@ const props = defineProps({
   },
 })
 
-const themes = inject('themes')
-console.log(themes)
+// const themes = inject('themes')
+// console.log(themes)
 
 // 根据 isDark 计算当前应该使用的主题
 const currentTheme = computed(() => {
@@ -70,8 +73,8 @@ const currentTheme = computed(() => {
 })
 
 // 深色和浅色主题配置
-const darkTheme = 'one-dark-pro'
-const lightTheme = 'one-light'
+// const darkTheme = 'one-dark-pro'
+// const lightTheme = 'one-light'
 
 // Monaco Editor 配置 - 完全只读模式，但保留语法高亮
 const monacoOptions = computed(() => ({
@@ -238,7 +241,7 @@ const normalizedNode = computed(() => {
 })
 
 const displayLanguage = computed(() => {
-  console.log(props.node)
+  // console.log(props.node)
   const lang = props.node.language?.toLowerCase() || 'text'
   return languageMap[lang] || lang.toUpperCase()
 })

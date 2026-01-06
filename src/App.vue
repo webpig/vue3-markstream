@@ -5,11 +5,25 @@
   import CodeBlock from './components/CodeBlock.vue'
   import { markdownContent as markdownContent1 } from './model/markdownContent'
 
-  const themes = ['one-dark-pro', 'one-light'];
+  // const themes = ['one-dark-pro', 'one-light'];
   // const darkTheme = 'material-theme-darker';
   // const lightTheme = 'material-theme-lighter';
 
-  provide('themes', themes)
+  // provide('themes', themes)
+
+  // 主题配置
+  const isDark = ref(false)  // 设置为 false 使用浅色主题
+  const darkTheme = 'one-dark-pro'
+  const lightTheme = 'one-light'
+  const themes = ['one-dark-pro', 'one-light']
+
+  // 通过 provide 传递主题配置给自定义组件
+  provide('codeBlockTheme', {
+    isDark,
+    darkTheme,
+    lightTheme,
+    themes,
+  })
 
   // 注册自定义代码块组件
   setCustomComponents({
@@ -51,13 +65,13 @@
     darkTheme: 'vs-dark',
     lightTheme: 'atom-one-light',
   }
-  
+
   const startStream = () => {
     markdownContent.value = ''
     const content = `# Welcome to MarkStream Vue
-  
+
   ## Features
-  
+
   - **Stream rendering**: Real-time markdown display
   - **Syntax highlighting**: Code blocks with beautiful colors
   - **Easy integration**: Simple to use in Vue 3 projects
@@ -68,68 +82,68 @@
   SELECT * FROM users WHERE age > 18;
   SELECT * FROM users WHERE age > 18;
   \`\`\`
-  
+
   ### JavaScript Code Example
-  
+
   \`\`\`javascript
   const greeting = "Hello, World!";
   console.log(greeting);
-  
+
   // 这是一个函数示例
   function calculateSum(a, b) {
     return a + b;
   }
-  
+
   const result = calculateSum(5, 3);
   console.log("结果:", result);
   \`\`\`
-  
+
   ### Python Code Example
-  
+
   \`\`\`python
   def greet(name):
       return f"Hello, {name}!"
-  
+
   # 使用示例
   message = greet("MarkStream")
   print(message)
-  
+
   # 列表推导式示例
   numbers = [x * 2 for x in range(10)]
   print(numbers)
   \`\`\`
-  
+
   ### TypeScript Code Example
-  
+
   \`\`\`typescript
   interface User {
     id: number;
     name: string;
     email: string;
   }
-  
+
   const users: User[] = [
     { id: 1, name: "Alice", email: "alice@example.com" },
     { id: 2, name: "Bob", email: "bob@example.com" }
   ];
-  
+
   function findUser(id: number): User | undefined {
     return users.find(user => user.id === id);
   }
-  
+
   const user = findUser(1);
   console.log(user?.name);
   \`\`\`
-  
+
   ### CSS Code Example
-  
+
   \`\`\`css
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
   }
-  
+
   .button {
     background-color: #42b883;
     color: white;
@@ -139,18 +153,18 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+
   .button:hover {
     background-color: #35a372;
   }
   \`\`\`
-  
+
   ### List Example
-  
+
   1. First item
   2. Second item
   3. Third item
-  
+
   **Enjoy using MarkStream Vue!**`
 
   const content1 = `# Hello
@@ -181,7 +195,7 @@ graph TD
   A-->B
 \`\`\`
 `;
-  
+
     let index = 0
     const interval = setInterval(() => {
       if (index < content.length) {
@@ -193,31 +207,31 @@ graph TD
     }, 20)
   }
   </script>
-  
+
   <template>
     <div class="container">
       <h1>MarkStream Vue Demo</h1>
       <button @click="startStream" class="start-btn">Start Stream</button>
       <div class="markdown-container markstream-vue">
-        <MarkdownRender 
+        <MarkdownRender
           :content="markdownContent"
           :themes="themes"
         />
       </div>
     </div>
   </template>
-  
+
   <style scoped>
   .container {
     max-width: 800px;
     padding: 2rem;
   }
-  
+
   h1 {
     text-align: left;
     margin-bottom: 2rem;
   }
-  
+
   .start-btn {
     display: inline-block;
     margin-bottom: 2rem;
@@ -230,11 +244,11 @@ graph TD
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+
   .start-btn:hover {
     background-color: #35a372;
   }
-  
+
   .markdown-container {
     background-color: #fff;
     border-radius: 8px;
@@ -302,12 +316,12 @@ graph TD
     line-height: 1.45;
     margin: 16px 0;
   }
-  
+
   .markdown-container :deep(code) {
     font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
     font-size: 85%;
   }
-  
+
   .markdown-container :deep(pre code) {
     display: block;
     padding: 0;
@@ -315,17 +329,17 @@ graph TD
     border: none;
     color: #24292e;
   } */
-  
+
   /* Monaco Editor 容器样式 */
   /* .markdown-container :deep(.monaco-editor) {
     border-radius: 6px;
     overflow: hidden;
   }
-  
+
   .markdown-container :deep(.monaco-editor .monaco-editor-background) {
     background-color: #ffffff;
   } */
-  
+
   /* 代码块容器样式 */
   /* .markdown-container :deep([class*="code-block"]) {
     border-radius: 6px;
@@ -343,15 +357,14 @@ graph TD
     align-items: center;
     justify-content: space-between;
   } */
-  
+
   /* 行号样式 */
   /* .markdown-container :deep(.monaco-editor .margin) {
     background-color: #fafbfc;
   } */
-  
+
   /* 代码内容区域 */
   /* .markdown-container :deep(.monaco-editor .monaco-editor-background) {
     background-color: #ffffff;
   } */
   </style>
-  
