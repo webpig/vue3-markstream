@@ -9,11 +9,14 @@ importers:
   .:
     dependencies:
       markstream-vue:
-        specifier: ^0.0.4
-        version: 0.0.4(shiki@3.20.0)(stream-markdown@0.0.11(shiki@3.20.0))(stream-monaco@0.0.8(monaco-editor@0.52.2))(vue@3.5.26)
-      stream-monaco:
-        specifier: ^0.0.8
-        version: 0.0.8(monaco-editor@0.52.2)
+        specifier: 0.0.5-beta.0
+        version: 0.0.5-beta.0(shiki@3.20.0)(stream-markdown@0.0.11(shiki@3.20.0))(stream-monaco@0.0.8(monaco-editor@0.52.2))(vue@3.5.26)
+      shiki:
+        specifier: ^3.20.0
+        version: 3.20.0
+      stream-markdown:
+        specifier: ^0.0.11
+        version: 0.0.11(shiki@3.20.0)
       vue:
         specifier: ^3.5.24
         version: 3.5.26
@@ -506,8 +509,8 @@ packages:
     resolution: {integrity: sha512-nZpRTJj4S6bN0I5wsNBtgzDKx+HYBBSsvKjGdYw7/tPdrzfo3gUTt3ZbeAjPGeZaC6a4LFi4JdhTVeLm3F6TIQ==}
     engines: {node: '>=18'}
 
-  markstream-vue@0.0.4:
-    resolution: {integrity: sha512-J9UF94OY7OaYUmCTek6OX4MdWlwWwt6nNkWs/7Z54v+Jg0qYqDgbI0Hl3wjB6haDA4+8NQCxhzL4/MCKBaX7kQ==}
+  markstream-vue@0.0.5-beta.0:
+    resolution: {integrity: sha512-sezUQapo4JjPl7U/BsE/LPjWYbSd9IzeHVHUv9tYyp9Kl7jmCAgIjl917+7kdmijk3noqCTDfP5tsOiqFs/CNg==}
     peerDependencies:
       katex: '>=0.16.22'
       mermaid: '>=11'
@@ -607,8 +610,8 @@ packages:
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
 
-  stream-markdown-parser@0.0.53:
-    resolution: {integrity: sha512-kmXQGmFYOQnPOiLHW2G+vv72ttAOASWAwxAqwVy57D8Bpz3g3HPlR3fy0NGCpOG44awOIneO2+Fq9clgNju1ug==}
+  stream-markdown-parser@0.0.55:
+    resolution: {integrity: sha512-Bt7xSHlXp7vFD5bZLrU+WUG/hmzDh9KzTWB1c7dpnvFLbF1C/r8Pwhxcq7OtnRV7Uj+PwSxzUTtSE4P1NoquBA==}
 
   stream-markdown@0.0.11:
     resolution: {integrity: sha512-7J6uc5pPJ+pdBNuJOio1Y5s3WBVPj6GFNC5mPE903yS109xk/BFtNW12xkO8Bn1X6fYlThc/6nk9WcPKbHmJvA==}
@@ -907,6 +910,7 @@ snapshots:
       '@shikijs/core': 3.20.0
       '@shikijs/types': 3.20.0
       '@shikijs/vscode-textmate': 10.0.2
+    optional: true
 
   '@shikijs/themes@3.20.0':
     dependencies:
@@ -993,7 +997,8 @@ snapshots:
 
   '@vue/shared@3.5.26': {}
 
-  alien-signals@2.0.8: {}
+  alien-signals@2.0.8:
+    optional: true
 
   ccount@2.0.1: {}
 
@@ -1103,10 +1108,10 @@ snapshots:
       punycode.js: 2.3.1
       uc.micro: 2.1.0
 
-  markstream-vue@0.0.4(shiki@3.20.0)(stream-markdown@0.0.11(shiki@3.20.0))(stream-monaco@0.0.8(monaco-editor@0.52.2))(vue@3.5.26):
+  markstream-vue@0.0.5-beta.0(shiki@3.20.0)(stream-markdown@0.0.11(shiki@3.20.0))(stream-monaco@0.0.8(monaco-editor@0.52.2))(vue@3.5.26):
     dependencies:
       '@floating-ui/dom': 1.7.4
-      stream-markdown-parser: 0.0.53
+      stream-markdown-parser: 0.0.55
       vue: 3.5.26
     optionalDependencies:
       shiki: 3.20.0
@@ -1144,7 +1149,8 @@ snapshots:
 
   micromark-util-types@2.0.2: {}
 
-  monaco-editor@0.52.2: {}
+  monaco-editor@0.52.2:
+    optional: true
 
   nanoid@3.3.11: {}
 
@@ -1223,7 +1229,7 @@ snapshots:
 
   space-separated-tokens@2.0.2: {}
 
-  stream-markdown-parser@0.0.53:
+  stream-markdown-parser@0.0.55:
     dependencies:
       markdown-it-container: 4.0.0
       markdown-it-footnote: 4.0.0
@@ -1237,7 +1243,6 @@ snapshots:
   stream-markdown@0.0.11(shiki@3.20.0):
     dependencies:
       shiki: 3.20.0
-    optional: true
 
   stream-monaco@0.0.8(monaco-editor@0.52.2):
     dependencies:
@@ -1245,6 +1250,7 @@ snapshots:
       alien-signals: 2.0.8
       monaco-editor: 0.52.2
       shiki: 3.20.0
+    optional: true
 
   stringify-entities@4.0.4:
     dependencies:

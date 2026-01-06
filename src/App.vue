@@ -1,15 +1,22 @@
 <script setup lang="ts">
-  import { ref, h } from 'vue'
+  import { ref, h, provide } from 'vue'
   import MarkdownRender, { setCustomComponents } from 'markstream-vue'
   import 'markstream-vue/index.css'
   import CodeBlock from './components/CodeBlock.vue'
+  import { markdownContent as markdownContent1 } from './model/markdownContent'
+
+  const themes = ['one-dark-pro', 'one-light'];
+  // const darkTheme = 'material-theme-darker';
+  // const lightTheme = 'material-theme-lighter';
+
+  provide('themes', themes)
 
   // 注册自定义代码块组件
   setCustomComponents({
     code_block: CodeBlock,
   })
 
-  const markdownContent = ref('')
+  const markdownContent = ref(markdownContent1)
   
   // 代码块配置 - 使用明亮主题
   const codeBlockConfig = {
@@ -18,16 +25,8 @@
     // 启用浅色模式（明亮主题）
     isDark: false,
     // 代码块主题配置（Monaco Editor 主题）
-    // 推荐主题选项：
-    // 内置明亮主题: 'vs' (默认), 'hc-light' (高对比度)
-    // 内置深色主题: 'vs-dark', 'hc-black'
-    // 已注册的第三方主题: 'atom-one-light' (推荐), 'atom-one-dark', 'github-light'
-    codeBlockDarkTheme: 'atom-one-dark',
-    codeBlockLightTheme: 'atom-one-light', // 使用 Atom One Light 主题（明亮鲜艳）
-    
-    // 通过 provide 传递主题配置给子组件
-    darkTheme: 'atom-one-dark',
-    lightTheme: 'atom-one-light',
+    codeBlockDarkTheme: 'vs-dark',
+    codeBlockLightTheme: 'atom-one-light', // 使用注册的 Atom One Light 主题
     // Monaco Editor 选项
     codeBlockMonacoOptions: {
       readOnly: true,
@@ -48,6 +47,9 @@
     },
     // 确保不使用简单的 pre 标签，而是使用完整的 CodeBlockNode（带 Monaco Editor）
     renderCodeBlocksAsPre: false,
+    // 通过 provide 传递主题配置给子组件
+    darkTheme: 'vs-dark',
+    lightTheme: 'atom-one-light',
   }
   
   const startStream = () => {
@@ -199,7 +201,7 @@ graph TD
       <div class="markdown-container markstream-vue">
         <MarkdownRender 
           :content="markdownContent"
-          v-bind="codeBlockConfig"
+          :themes="themes"
         />
       </div>
     </div>
@@ -240,6 +242,53 @@ graph TD
     min-height: 300px;
     color: black;
     text-align: left;
+  }
+
+  /* 表格样式 */
+  .markdown-container :deep(table) {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 16px 0;
+    border: 1px solid #e5e7eb;
+  }
+
+  .markdown-container :deep(table th),
+  .markdown-container :deep(table td) {
+    border: 1px solid #e5e7eb;
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  .markdown-container :deep(table th) {
+    background-color: #f6f8fa;
+    font-weight: 600;
+  }
+
+  .markdown-container :deep(table tr:nth-child(even)) {
+    background-color: #fafafa;
+  }
+
+  .markdown-container :deep(table tr:hover) {
+    background-color: #f3f4f6;
+  }
+
+  /* 内联代码样式 */
+  .markdown-container :deep(code:not(pre code)) {
+    background-color: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+    font-size: 0.9em;
+    /* color: #e83e8c; */
+  }
+
+  /* 确保代码块内的 code 标签不受影响 */
+  .markdown-container :deep(pre code) {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    color: inherit;
   }
   
   /* 代码块样式增强 */

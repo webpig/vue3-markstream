@@ -41,7 +41,7 @@
         margin: 8px 0;
     }
 
-    code:not(:has(span)) {
+    /* code:not(:has(span)) {
         display: inline;
         margin-inline: .25em;
         padding-block: 6px;
@@ -53,7 +53,7 @@
         color: var(--eureka-markdown-code-color);
         background: var(--eureka-markdown-code-backgroud);
         border-radius: 1px;
-    }
+    } */
 
     h1,
     h2,
@@ -144,12 +144,12 @@
 
         li {
             list-style: disc;
-            // &::before {
+            /* // &::before {
             //     content: '-';
             //     display: inline-block;
             //     margin-inline: -1em 0.5em;
             //     opacity: 0.5;
-            // }
+            // } */
         }
     }
 

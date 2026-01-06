@@ -9,9 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "markstream-vue": "^0.0.4",
-    "vue": "^3.5.24",
-    "stream-monaco": "^0.0.8"
+    "markstream-vue": "0.0.5-beta.0",
+    "shiki": "^3.20.0",
+    "stream-markdown": "^0.0.11",
+    "vue": "^3.5.24"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.1",
